@@ -2,6 +2,7 @@ import os
 import csv
 
 csvpath = os.path.join('Resources', 'election_data.csv')
+file_to_output = os.path.join('Analysis', 'pypoll.txt' )
 
 candidate_list = []
 candidate_count = {}
@@ -21,13 +22,25 @@ with open(csvpath) as csvfile:
     max_key = max(candidate_count, key=candidate_count.get)
 
     max_value = candidate_count[max_key]
-    print("Election Results")
-    print("--------------------------")
     total_votes = len(candidate_list)
-    print(f"Total Votes: {total_votes}")
-    print("--------------------------")
+    print_out = (
+    "Election Results\n"
+    "--------------------------\n"
+    f"Total Votes: {total_votes}\n"
+    "--------------------------\n")
+    print_more = ("--------------------------\n"
+    f"Winner: {max_key}\n"
+    "--------------------------")
+    
+    #for key, value in candidate_count.items():
+        #print(f"{key}: {round((100/total_votes)*value,3)}% ({value})\n")
+    y = 0
     for key, value in candidate_count.items():
-        print(f"{key}: {round((100/total_votes)*value,3)}% ({value})")
-    print("--------------------------")
-    print(f"Winner: {max_key}")
-    print("--------------------------")
+        x = (f"{key}: {round((100/total_votes)*value,3)}% ({value})\n") 
+        print_out = print_out + x 
+        
+    print(print_out)
+    print(print_more)
+with open(file_to_output, "w") as writefile:
+   writefile.write(print_out)
+   writefile.write(print_more)

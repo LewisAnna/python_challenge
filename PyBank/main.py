@@ -2,6 +2,7 @@ import os
 import csv
 
 csvpath = os.path.join('Resources', 'budget_data.csv')
+file_to_output = os.path.join('Analysis', 'pybank.txt' )
 
 
 months = []
@@ -32,10 +33,15 @@ with open(csvpath) as csvfile:
     max_index = change.index(max_change)
     row_index_max = months[max_index+1]
     row_index_min = months[min_index+1]
-    print("Financial Analysis")
-    print("------------------------")
-    print(f"Total Months: { len(months)}")
-    print(f"Total: ${sum(total)}")
-    print(f"Averag Change: ${rounded_average}")
-    print(f"Greatest Increase in Profits: { row_index_max} (${max_change})")
-    print(f"Greatest Decrease in Profits: { row_index_min} (${min_change})")   
+    print_out =("Financial Analysis\n"
+                "------------------------\n"
+                 f"Total Months: { len(months)}\n"
+                 f"Total: ${sum(total)}\n"
+                 f"Average Change: ${rounded_average}\n"
+                 f"Greatest Increase in Profits: { row_index_max} (${max_change})\n"
+                 f"Greatest Decrease in Profits: { row_index_min} (${min_change})\n") 
+    print(print_out)
+with open(file_to_output, "w") as writefile:
+   writefile.write(print_out)
+
+                  
