@@ -31,10 +31,6 @@ with open(csvpath) as csvfile:
     print_more = ("--------------------------\n"
     f"Winner: {max_key}\n"
     "--------------------------")
-    
-    #for key, value in candidate_count.items():
-        #print(f"{key}: {round((100/total_votes)*value,3)}% ({value})\n")
-    y = 0
     for key, value in candidate_count.items():
         x = (f"{key}: {round((100/total_votes)*value,3)}% ({value})\n") 
         print_out = print_out + x 
